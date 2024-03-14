@@ -10,16 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 public class EmpleadoController {
     private final EmpleadoService empleadoService;
-    @GetMapping
-    public ResponseEntity<List<Empleado>> obtenerEmpleados() {
-        return ResponseEntity.ok(empleadoService.getEmpleados());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Empleado> obtenerEmpleado(@PathVariable String id) {

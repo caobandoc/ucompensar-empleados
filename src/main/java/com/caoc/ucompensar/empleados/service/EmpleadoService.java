@@ -6,16 +6,10 @@ import com.caoc.ucompensar.empleados.repositories.entities.EmpleadoEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class EmpleadoService {
     private final EmpleadoDao empleadoDao;
-
-    public List<Empleado> getEmpleados() {
-        return empleadoDao.findAll().stream().map(this::toMap).toList();
-    }
 
     public Empleado getEmpleado(String codigo) {
         return toMap(empleadoDao.getReferenceById(codigo));
