@@ -2,6 +2,7 @@ package com.caoc.ucompensar.empleados.controllers;
 
 import com.caoc.ucompensar.empleados.entities.Empleado;
 import com.caoc.ucompensar.empleados.service.EmpleadoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class EmpleadoController {
     }
 
     @PostMapping
-    public ResponseEntity<Empleado> crearEmpleado(@RequestBody Empleado empleado) {
+    public ResponseEntity<Empleado> crearEmpleado(@Valid @RequestBody Empleado empleado) {
         return ResponseEntity.ok(empleadoService.createEmpleado(empleado));
     }
 }

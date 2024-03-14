@@ -56,4 +56,94 @@ class EmpleadoEntityApplicationTests {
 
     }
 
+    @Test
+    void testCrearEmpleadoWhenCodigoIsBlank() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("")
+                .nombre("Test")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(12)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    void testCrearEmpleadoWhenCodigoIs000() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("000")
+                .nombre("Test")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(12)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCrearEmpleadoWhenCodigoIs9999() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("9999")
+                .nombre("Test")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(12)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCrearEmpleadoWhenNombreIsBlank() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("123")
+                .nombre("")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(12)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCrearEmpleadoWhenNombreIsMoreThan30Characters() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("123")
+                .nombre("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(12)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCrearEmpleadoWhenTiempoEnInstitucionIsLessThan1() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("123")
+                .nombre("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(0)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCrearEmpleadoWhenTiempoEnInstitucionIsMoreThan600() throws Exception {
+        Empleado empleado = Empleado.builder()
+                .codigo("123")
+                .nombre("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                .tipoEmpleado(true)
+                .tiempoEnInstitucion(601)
+                .build();
+        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleado)))
+                .andExpect(status().isBadRequest());
+    }
+
 }

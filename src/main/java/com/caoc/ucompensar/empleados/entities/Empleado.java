@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class Empleado {
     @NotBlank(message = "El código del empleado es obligatorio")
-    @Pattern(regexp = "^\\d{3}$", message = "El código del empleado debe tener 3 dígitos, no puede ser 000")
+    @Pattern(regexp = "^(?!000$)\\d{3}$", message = "El código del empleado debe tener 3 dígitos, no puede ser 000")
     @Size(min = 3, message = "El código del empleado debe tener 3 dígitos")
     private String codigo;
 
