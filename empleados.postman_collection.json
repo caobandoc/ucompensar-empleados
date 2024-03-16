@@ -8,18 +8,20 @@
 	},
 	"item": [
 		{
-			"name": "getAll",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
 			"name": "getId",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/001",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"001"
+					]
+				}
 			},
 			"response": []
 		},
